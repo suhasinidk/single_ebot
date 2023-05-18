@@ -1,0 +1,31 @@
+\section{Introduction}
+With the advancements in robotics technologies, an increasing number of industries and businesses are seeking the adoption of autonomous robots to produce goods or to provide services. With the aid of robots capable of planning and executing tasks, human workers can potentially avoid conducting repetitive and labor-intensive tasks in dangerous and unhealthy environments. Many examples of this can be seen across different areas, including manufacturing,  %\cite{ding2020hidden}, 
+services, %\cite{trulls2011autonomous}, 
+agriculture, %\cite{cheein2013agricultural}, 
+and health care \cite{ding2020hidden,riek2017healthcare}. However, many aspects of robotics technologies, including task planning, real-time sensing, and actuator controls, are still being improved. Thus, in general, robot performance is superior in controlled and predictable environments compared to environments that are continuously changing, unique, and complex. From this perspective, construction sites can be considered as one of the most challenging environments for autonomous robots to perform tasks.
+
+The construction industry, suffering from chronic problems of declining productivity  %\cite{teicholz2013labor}
+, shortage of skilled labor, %\cite{BLS2019}
+and work-related disease/fatalities \cite{BLS2019,OSHA2019}, would benefit greatly from robots that could perform repetitive and dangerous tasks with little-to-no human intervention \cite{bock2015future}. To achieve autonomous behaviors in construction, however, robots should have construction-related knowledge and capabilities to generate task plans for unique and changing work environments. Most of the robots applied in construction industry so far tend to be static, single-purpose, and designed mainly for tasks involving heavy lifting, such as bricklaying \cite{bricklaying1} or rebar tying \cite{rebar1}\footnote{MULE135 and SAM100 by Construction Robotics (\href{https://www.construction-robotics.com}{https://www.construction-robotics.com}) and Hadrian X by FBR (\href{https://www.fbr.com.au/view/hadrian-x}{https://www.fbr.com.au/view/hadrian-x}) are examples of such robots.}. These ``blind'' robots with perception or reasoning capabilities cannot adapt their behaviors to different situations without manual re-programming and re-installation by operators. It is clear that far less work has gone into the development of autonomous robots that can understand a given situation and plan their behaviors in a construction project.
+
+
+To overcome these limitations, this study proposes a new direction of construction robot development leveraging a construction-related knowledge base for the automated generation of robot behaviors in construction projects. Specifically, this research provides an implementation of a small, mobile, autonomous, and extensible robotics platform capable of performing fine-grained construction tasks in interior construction of residential/commercial building projects. 
+\begin{enumerate}
+    \item Autonomous: Robots should be autonomous in order to cope with frequent changes in residential or commercial construction site conditions and successfully complete tasks with minimal or no supervision.
+    \item Mobile: Unlike manufacturing factories with conveyor belts, it is important for construction robots to move to different locations to perform tasks distributed throughout a large construction site.
+    \item Small size: The sizes of the construction robots should be adequate to fit through standard doorways.
+    \item Extensible: In order not to limit robots' operations to only a few situations, their actions must be extensible. This flexibility would allow the robot to work in as wide a range of situations as possible.
+\end{enumerate}
+
+
+In this paper, painting a wall with a conventional paint roller was selected as a representative task for demonstrating the feasibility of the robot. This task uses simple materials and tools, has clearly defined and verifiable success criteria, and poses little danger. Simulation, instead of physical hardware, was used for this stage of development and testing. Simulation is a much more rapid and cost effective means of developing and testing before spending time and resources on physical robot components and a proper physical testing environment.
+
+Ultimately, this paper is intended to serve as the foundation for further development. The simulation work here is the first step toward developing a general purpose mobile construction robot. While only a single task is demonstrated for the purposes of this proof of concept, the extensibility required means that the robot should be capable of completing a wide range of tasks.%\footnote{A demonstration video can be found on Youtube in the following link: \hl{http://XXXXXXX} \ph{Do we need to put the link}}.
+
+
+In the rest of this paper, Section \ref{sec:related_work} summarizes the related work and Section \ref{sec:architecture} details the robot's chassis, the software components that drive the robot's actions, and the ontology developed within this research. Section \ref{sec:implementation} describes the prototype user interface developed for use with the robot and explains the primary means of initiating the robot's actions. Section \ref{sec:results} details the experimental setup and discusses the results of the test simulations. Section \ref{sec:conclusion} discusses the next steps to take in the overarching effort of the robot's development.
+
+%would be able to free human workers from repetitive, labor-intensive, and dangerous tasks.
+%Many repetitive tasks from the viewpoint of human cannot be performed with a single robot task plan due to slight differences in the shapes or configurations of the workspaces. 
+
+%Construction industry has been suffering from chronic problems of declining productivity \cite{teicholz2013labor}, shortage of skilled labor \cite{BLS2019}, and work-related disease/fatalities \cite{OSHA2019}. 

@@ -1,0 +1,23 @@
+
+<launch>
+  <arg name="debug" default="false"/>
+  <arg name="deploy" default="true"/>
+<!-- demo_skills -->
+  <arg name="skill_libraries" default="[nav, picknplace, skiros2_std_skills]"/> <!---->
+  <arg name="skill_list" default="[]"/>
+  <arg name="primitive_list" default="[NavigateToGoalPrimitive,  PickObjectPrimitive, PlaceObjectPrimitive]"/><!-- ArmToHomePrimitive -->
+<!--  PickObjectPrimitive, PlaceObjectPrimitive,  -->
+  <arg name="robot_ontology_prefix" default="husky"/>
+  <arg name="robot_name" default="husky"/>
+
+   <include file="$(find skiros2)/launch/skiros.launch">
+        <arg name="robot_ontology_prefix" value="husky" />
+        <arg name="robot_name" value="husky" />
+        <arg name="workspace_dir" value="$(find husky_skiros)/owl" />
+        <arg name="init_scene" value="test2.turtle" />
+        <arg name="libraries_list" value="$(arg skill_libraries)" />  
+        <arg name="primitive_list" value="$(arg primitive_list)" />
+        <arg name="skill_list" value="$(arg skill_list)" />
+    </include>
+
+</launch>

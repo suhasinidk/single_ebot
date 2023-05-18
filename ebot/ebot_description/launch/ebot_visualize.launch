@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<!--including urdf model-->
+    <!--<param name="robot_description" command="$(find xacro)/xacro '$(find ebot_description)/urdf/ebot_ur5.xacro'"/>-->
+<!--publish the state of the robot i.e. tf-->
+    <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+
+<!--runnning rviz node-->
+    <!--<node name="rviz" pkg="rviz" type="rviz" />-->
+
+<arg name="sample_world" value="$(find ebot_nav)/maps/task2_world.yaml">
+    </arg> 
+  	<node pkg="map_server" type="map_server" name="map_server" args="$(arg sample_world)"> 
+  	</node> 
+  	<node pkg="tf" type="static_transform_publisher" name="tf_node" args="0 0 0 0 0 0 /map /ebot_base/laser/scan 100"/>
+
+<!--saving rviz configurations in a rviz folder-->
+
+    <!-- <node name="rviz" pkg="rviz" type="rviz"   args=" -d $(find ebot_description)/rviz/visualize.rviz" /> -->
+    
+<!--finds all of the non-fixed joints and publishes a JointState message-->
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+        <param name="use_gui" value="False" />
+    </node> -->
+    
+</launch>

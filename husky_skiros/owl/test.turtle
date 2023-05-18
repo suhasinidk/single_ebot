@@ -1,0 +1,48 @@
+
+@prefix paintbot: <http://unomaha.edu/ontologies/paintbot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skiros: <http://rvmi.aau.dk/ontologies/skiros.owl#> .
+
+# Scene
+skiros:Scene-0 rdf:type owl:NamedIndividual ,
+        skiros:Scene ;
+    skiros:contain paintbot:PaintTray-51 ;
+
+    skiros:DiscreteReasoner "AauSpatialReasoner"^^xsd:string ;
+    skiros:FrameId "map"^^xsd:string ;
+    skiros:OrientationW "1.0"^^xsd:float ;
+    skiros:OrientationX "0.0"^^xsd:float ;
+    skiros:OrientationY "0.0"^^xsd:float ;
+    skiros:OrientationZ "0.0"^^xsd:float ;
+    skiros:PositionX "0.0"^^xsd:float ;
+    skiros:PositionY "0.0"^^xsd:float ;
+    skiros:PositionZ "0.0"^^xsd:float ;
+    rdfs:label "Scene"^^xsd:string .
+
+# Paints
+
+paintbot:Paint-1 rdf:type owl:NamedIndividual ,
+        paintbot:Paint ;
+    rdfs:label "Paint_red"^^xsd:string .
+
+
+# Trays
+
+paintbot:fire_hydrant rdf:type owl:NamedIndividual ,
+        paintbot:PaintTray ;
+    skiros:contain paintbot:Paint-1 ;
+    skiros:OrientationX "0.0"^^xsd:float ;
+    skiros:OrientationY "0.0"^^xsd:float ;
+    skiros:OrientationZ "0.09983341664682815"^^xsd:float ;
+    skiros:OrientationW "0.9950041652780258"^^xsd:float ;
+    skiros:PositionX "12.0"^^xsd:float ;
+    skiros:PositionY "12.0"^^xsd:float ;
+    rdfs:label "PaintTray_red"^^xsd:string .
+
+
+# Wall sections
+

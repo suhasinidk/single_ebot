@@ -1,0 +1,73 @@
+\appendix
+
+\section{Skill PDDL} \label{app:skill_pddl}
+\begin{verbatim}
+(define (domain untitled)
+(:requirements :typing :fluents :universal-preconditions)
+(:types 
+    paintbot:WallSection paintbot:Paint rparts:ArmDevice
+            sumo:Agent skiros:Location paintbot:PaintTray - thing
+    rparts:ArmDevice paintbot:WallSection - paintbot:hasColorx
+    paintbot:WallSection skiros:Location paintbot:PaintTray - skiros:aty
+)
+(:predicates 
+    (paintbot:targetColor ?x - paintbot:WallSection  ?y - paintbot:Paint )
+    (paintbot:hasColor ?x - paintbot:hasColorx  ?y - paintbot:Paint )
+    (skiros:at ?x - sumo:Agent  ?y - skiros:aty )
+    (Painted ?x - paintbot:WallSection )
+    (skiros:contain ?x - paintbot:PaintTray  ?y - paintbot:Paint )
+)
+(:functions
+)
+(:durative-action loadpaint
+    :parameters (?Paint - paintbot:Paint
+        ?Tray - paintbot:PaintTray
+        ?Arm - rparts:ArmDevice
+        ?Robot - sumo:Agent )
+    :duration (= ?duration 1)
+    :condition (and
+        (at start (skiros:contain ?Tray ?Paint))
+        (at start (skiros:at ?Robot ?Tray))
+        (over all (skiros:at ?Robot ?Tray))
+    )
+    :effect (and
+        (at end (paintbot:hasColor ?Arm ?Paint))
+    )
+)
+
+(:durative-action applypaint
+    :parameters (?Wall - paintbot:WallSection
+        ?Paint - paintbot:Paint
+        ?Arm - rparts:ArmDevice
+        ?Robot - sumo:Agent )
+    :duration (= ?duration 1)
+    :condition (and
+        (at start (paintbot:targetColor ?Wall ?Paint))
+        (at start (paintbot:hasColor ?Arm ?Paint))
+        (at start (skiros:at ?Robot ?Wall))
+        (over all (paintbot:hasColor ?Arm ?Paint))
+        (over all (skiros:at ?Robot ?Wall))
+    )
+    :effect (and
+        (at end (paintbot:hasColor ?Wall ?Paint))
+        (at end (Painted ?Wall))
+    )
+)
+
+(:durative-action navigatetolocation
+    :parameters (?Start - skiros:Location
+        ?Destination - skiros:Location
+        ?Robot - sumo:Agent )
+    :duration (= ?duration 1)
+    :condition (and
+        (at start (skiros:at ?Robot ?Start))
+        (at start (not (skiros:at ?Robot ?Destination)))
+    )
+    :effect (and
+        (at start (not (skiros:at ?Robot ?Start)))
+        (at start (skiros:at ?Robot ?Destination))
+    )
+)
+
+)
+\end{verbatim}

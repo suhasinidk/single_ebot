@@ -1,0 +1,161 @@
+%\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
+\documentclass[10pt, conference]{IEEEtran}
+
+%Command and package
+%Additional Definition
+\setlength{\textfloatsep}{3pt plus 1.0pt minus 2.0pt}
+\usepackage[ruled, linesnumbered]{algorithm2e}
+\usepackage{cite}
+\usepackage{mathtools}
+\usepackage{geometry}
+\usepackage{comment}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\newcommand{\makenumbered}[2]{
+%\vspace{-0.4cm}
+  \newcounter{#1}[section]
+  \newenvironment{#1}%
+  {\begin{list}{}{
+      \setlength{\itemsep}{0in}%
+        \setlength{\labelwidth}{0in}%
+        \setlength{\labelsep}{0in}%
+        \setlength{\rightmargin}{0in}%
+        \setlength{\leftmargin}{0in}%
+        \setlength{\parsep}{0in}%
+      \setlength{\listparindent}{\parindent}}%
+      \refstepcounter{#1}%
+  \item[] {\small\bf #2} }%
+  {\end{list}} %\vspace{-0.4cm}
+}
+
+%%%%%%%%%% Comments %%%%%%%%%
+%\newcommand\TODO[1]{\textcolor{red}{#1}}
+\newcommand\eat[1]{}
+\newcommand\ph[1]{{\color{red} \bf [PH:#1]}}
+\newcommand{\TODO}[1]{\hl{\textbf{TODO:} #1}\xspace} 
+\usepackage{color,soul}
+
+%%%%%%%%%% Definitions %%%%%%%%%
+\makenumbered{defn}{Definition \thedefn:}
+\def\thedefn{\thesection.\arabic{defn}}
+\makenumbered{theoremn}{Theorem \thetheoremn:}
+\def\thetheoremn{\thesection.\arabic{theoremn}}
+\makenumbered{lemman}{Lemma \thelemman:}
+\def\thelemman{\thesection.\arabic{lemman}}
+\makenumbered{problemn}{Problem \thelemman:}
+\def\thelemman{\thesection.\arabic{problemn}}
+
+%%%%%%%% for appendix numbering
+\usepackage{amsthm}
+\newtheorem{innercustomthm}{Theorem}
+\newenvironment{customthm}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+    {\endinnercustomthm}
+\newtheorem{innercustomlem}{Lemma}
+\newenvironment{customlem}[1]
+  {\renewcommand\theinnercustomlem{#1}\innercustomlem}
+    {\endinnercustomlem}
+
+%%%%bib problem
+    \makeatletter
+        \let\@internalcite\cite
+            \def\cite{\def\citeauthoryear##1##2{##1, ##2}\@internalcite}
+            \def\shortcite{\def\citeauthoryear##1{##2}\@internalcite}
+        \def\@biblabel#1{\def\citeauthoryear##1##2{##1, ##2}[#1]\hfill}
+        \makeatother
+
+
+% correct bad hyphenation here
+%\hyphenation{op-tical net-works semi-conduc-tor}
+
+%\addbibresource{bibliography.bib}
+%\geometry{left=1in,top=1in,right=1in,bottom=1in}
+%\graphicspath{{images/}}
+%\pgfplotsset{compat=1.8}
+%\usepgfplotslibrary{statistics}
+
+\DeclareMathOperator{\atantwo}{atan2}
+
+%\renewcommand{\abstractname}{}
+
+
+%%%%%%%%% Draw a picture %%%%%%%%%%%%
+\usepackage{pgfplots}
+\geometry{left=0.8 in,top=0.8in,right=0.8 in,bottom=0.8in}
+\graphicspath{{images/}}
+\pgfplotsset{compat=1.8}
+\usepgfplotslibrary{statistics}
+
+
+%\newtheorem{prop}{\textbf{Proposition}}
+
+%\pdfminorversion=4
+
+\IEEEoverridecommandlockouts                              % This command is only needed if
+                                                          % you want to use the \thanks command
+%\overrideIEEEmargins                                      % Needed to meet printer requirements.
+
+%\let\bs=\boldsymbol
+
+%\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+  %  T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+%\renewcommand{\baselinestretch}{0.98} 
+
+%\newcommand{\qixing}[1]{\textcolor{red}{[#1]}}
+   
+   
+\begin{document}
+
+
+\title{\huge ROS-Based Robot Simulation for Repetitive Labor-Intensive Construction Tasks }
+
+
+\author{
+  \IEEEauthorblockN{Ryan Lankin\IEEEauthorrefmark{2},
+  Kyungki Kim\IEEEauthorrefmark{3},
+  Pei-Chi Huang\IEEEauthorrefmark{2}}
+  \IEEEauthorblockA{
+    \IEEEauthorrefmark{2}Department of Computer Science, The 
+    University of Nebraska Omaha \\
+    {\small {\em \{rlankin, phuang\}@unomaha.edu}}\\
+    \IEEEauthorrefmark{3}Durham School of Architectural Engineering and Construction, 
+    University of Nebraska - Lincoln \\
+    {\small {\em \{kkim13\}@unl.edu}}
+  }
+}
+
+\maketitle
+
+\IEEEpeerreviewmaketitle
+%\bstctlcite{IEEEexample:BSTcontrol}
+
+\input{tex/abstract}
+\input{tex/introduction}
+\input{tex/related_work}
+\input{tex/architecture}
+\input{tex/implementation}
+\input{tex/results}
+\input{tex/future}
+
+%\printbibliography
+\bibliographystyle{IEEEtran}
+\bibliography{bibliography}
+
+%\input{tex/appendix}
+
+\end{document}

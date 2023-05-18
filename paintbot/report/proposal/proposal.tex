@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+
+\usepackage[style=numeric]{biblatex}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\addbibresource{proposal_bibliography.bib}
+\DeclareNameAlias{default}{last-first}
+\geometry{left=1.5in,top=1in,right=1in,bottom=1in}
+
+\title{Robotics Platform for Fine-Grained Construction Tasks}
+\author{Ryan Lankin\\Advisor: Dr. Pei-Chi Huang\\Department of Computer Science\\College of Information Science and Technology\\University of Nebraska Omaha\\Omaha, NE 68182-0500\\rlankin@unomaha.edu}
+
+\begin{document}
+    \maketitle
+
+    \section{Introduction}
+    Modern construction robots tend to be large, static, and designed for tasks involving heavy lifting, such as wall construction.\footnote{MULE135 and SAM100 by Construction Robotics (\href{https://www.construction-robotics.com}{https://www.construction-robotics.com}) and Hadrian X by FBR (\href{https://www.fbr.com.au/view/hadrian-x}{https://www.fbr.com.au/view/hadrian-x}) are examples of such robots.} Far less work has gone into the development of mobile robots capable of performing more fine-grained construction tasks. Such a robot would be able to perform repetitive and time-consuming tasks, reducing the physical strain on their human coworkers and freeing them up for tasks that require more cognitive effort. The lack of such robots can be attributed to the difficulty of developing systems capable of operating in the highly dynamic and hazardous nature of a typical construction environment.
+
+    Advancements in artificial intelligence and robotics make the development of a mobile construction robot feasible. The GMapping simultaneous localization and mapping (SLAM) algorithm available from OpenSLAM \cite{gmapping} enables the robot to understand and navigate its environment even as that environment changes. The Skill-based platform for ROS (SkiROS) \cite{rovida2017skiros} provides knowledge representation and reasoning capabilities that enable complex task planning.
+
+    \section{Background}
+    % TODO: Commercial robots?
+
+    The Rao-Blackwellized particle filter (RBPF) technique was proposed by Doucet et. al. \cite{doucet2000rao} as an extension of standard particle filters that enhances their efficiency by removing unnecessary particles. Grisetti et. al. introduced an approach to SLAM \cite{grisetti2005improving, grisetti2007improved} that takes advantage of RBPFs to more accurately localize the robot. This approach was demonstrated to require an order of magnitude fewer particles than comparable approaches. The GMapping algorithm is an implementation of their work designed for general use in ROS-based robots.
+
+    The Planning Domain Definition Language (PDDL) was proposed by McDermott \cite{mcdermott20001998} as a standardized AI planning language and has been continually developed since its introduction. SkiROS is a knowledge representation and task planning system developed by Rovida et. al. \cite{rovida2017skiros} that is capable of operating with any PDDL-based planner. To use SkiROS, the user must implement a set of skills the robot can execute and must supply an ontology in the Web Ontology Language format. Arbitrary goals within the domain may then be issued to the robot and SkiROS will generate the appropriate series of tasks using the skills defined by the user.
+
+    \section{Objectives}
+    The primary objective of this project is to develop an autonomous mobile robotics platform that is capable of performing fine-grained construction tasks that require navigation of a work site. The robot will use SkiROS as the basis for a task-planning subsystem that allows it to complete high-level tasks specified by a user. GMapping will be used to allow the robot to safely and efficiently navigate a work site. The task used as a representative demonstration will be painting a series of walls. To do this, the robot will be given information about which walls need to be painted and which colors they need to be painted with. The robot will then need to plan the series of tasks necessary to complete its objectives. The environment will be dynamic, so the robot will also need to be able to recalculate its plan at runtime.
+
+    I will track the time taken by the robot to complete various operations, such as task planning, navigation, and painting. Additionally, any difficulties or complications the robot encounters during its operation will be tracked to determine potential problems that could arise in a real-world scenario. As a secondary benefit, this data may prove useful to construction project planners when drafting estimates for project costs.
+
+    \section{Method}
+    I will develop the robot using the Robot Operating System (ROS). ROS is a widely used platform that provides a robust foundation of tools and applications for robot implementation. The robot will consist of several subsystems, some of which will be based on existing tools (such as GMapping and SkiROS). To accommodate the deadline for the project and the lack of physical hardware availability, the implementation of the robot will be simulated using standard ROS simulation tools Gazebo and RViz.
+
+    Currently, the Kuka YouBot is being used as the model robot, however modifications may be made to it as required to accommodate project and problem constraints. The Kuka YouBot is equipped with Mecanum wheels for holonomic motion, an arm with $5$ degrees of freedom and a gripper, and a laser sensor for rangefinding and obstacle detection.
+
+    \section{Current Status}
+    Much of the time spent thus far on the project has been in learning the ROS ecosystem and developing the foundational software for the proposed construction robot. At the time of this proposal, the following milestones have been achieved:
+    \begin{enumerate}
+        \item Tackle ROS' steep learning curve and understand how to design a robot with it.
+        \item The Kuka YouBot model has been successfully configured to work with both ROS and Gazebo.
+        \item Subsystems are capable of passing messages via ROS topics.
+        \item The robot is capable of utilizing its Mecanum wheels to achieve holonomic motion.
+        \item The robot can be directed to move to specified coordinates and face a specified direction.
+        \item MoveIt! has been successfully integrated to allow for control of the robot's arm.
+        \item Two motion sets have been designed for the arm - one for loading paint onto a paint roller and one to apply paint to a wall in front of the robot.
+        \item The robot is capable of executing a simple action loop consisting of: move to the paint tray, load paint onto a paint roller, move to a wall, apply paint to the wall, move back to the paint tray, etc. This is for testing purposes during development and will be improved later.
+    \end{enumerate}
+    I am currently working on integrating both the GMapping algorithm and the SkiROS system.
+
+    \section{Expected Results}
+    \begin{enumerate}
+        \item The codebase for a robot that is capable of carrying out tasks specified by a user.
+        \item A simulation demonstrating successful operation of the robot.
+        \item Data measuring runtime performance of the robot.
+    \end{enumerate}
+
+    \printbibliography
+\end{document}

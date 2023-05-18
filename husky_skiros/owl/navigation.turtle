@@ -1,0 +1,41 @@
+
+@prefix husky: <http://www.semanticweb.org/zeus/ontologies/husky#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skiros: <http://rvmi.aau.dk/ontologies/skiros.owl#> .
+
+# Scene
+skiros:Scene-0 rdf:type owl:NamedIndividual ,
+        skiros:Scene ;
+    skiros:contain husky:fire_hydrant ;
+    # skiros:contain husky:WallSection-101 ;
+    # skiros:contain husky:WallSection-102 ;
+    # skiros:contain husky:WallSection-103 ;
+    # skiros:contain husky:WallSection-104 ;
+    skiros:DiscreteReasoner "AauSpatialReasoner"^^xsd:string ;
+    skiros:FrameId "map"^^xsd:string ;
+    skiros:OrientationW "1.0"^^xsd:float ;
+    skiros:OrientationX "0.0"^^xsd:float ;
+    skiros:OrientationY "0.0"^^xsd:float ;
+    skiros:OrientationZ "0.0"^^xsd:float ;
+    skiros:PositionX "0.0"^^xsd:float ;
+    skiros:PositionY "0.0"^^xsd:float ;
+    skiros:PositionZ "0.0"^^xsd:float ;
+    rdfs:label "Scene"^^xsd:string .
+
+# Wall sections
+
+husky:fire_hydrant rdf:type owl:NamedIndividual ,
+        husky:fire_hydrant ;
+    skiros:OrientationX "0.0"^^xsd:float ;
+    skiros:OrientationY "0.0"^^xsd:float ;
+    skiros:OrientationZ "0.0"^^xsd:float ;
+    skiros:OrientationW "1.0"^^xsd:float ;
+    skiros:PositionX "3.180240"^^xsd:float ;
+    skiros:PositionY "-6.511180"^^xsd:float ;
+    rdfs:label "fire_hydrant"^^xsd:string ;
+    husky:fire_hydrant husky:fire_hydrant-1 .
+
